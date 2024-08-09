@@ -2,25 +2,30 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
   --primary-color: #000;
   --secondary-color: #fff;
+  --accent-color: #e74c3c;
+  --background-light: #f5f5f5;
+  --background-dark: #1c1c1c;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(255, 255, 255, 0.1);
 }
 
 html {
-  transition: all 0.5s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 html.dark {
   --primary-color: #fff;
   --secondary-color: #333;
-}
-
-html.dark {
-  background-color: #111;
-  color: var(--primary-color);
+  --accent-color: #e74c3c;
+  --background-light: #333;
+  --background-dark: #111;
 }
 
 body {
@@ -31,6 +36,13 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
+  background-color: var(--background-light);
+  color: var(--primary-color);
+  transition: background-color 0.3s ease-in;
+}
+
+html.dark body {
+  background-color: var(--background-dark);
 }
 
 .toggle {
@@ -38,14 +50,26 @@ body {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   border: 0;
-  border-radius: 4px;
-  padding: 8px 12px;
+  border-radius: 30px;
+  padding: 10px 20px;
   position: absolute;
-  top: 100px;
+  top: 50px;
+  right: 50px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  transition: all 0.3s ease-in;
+}
+
+html.dark .toggle {
+  box-shadow: 0 4px 8px var(--shadow-dark);
 }
 
 .toggle:focus {
   outline: none;
+}
+
+.toggle:hover {
+  transform: translateY(-3px);
+  background-color: var(--accent-color);
 }
 
 .clock-container {
@@ -53,12 +77,23 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
 }
 
 .clock {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
+  border: 8px solid var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 10px 30px var(--shadow-light);
+  background-color: var(--background-light);
+  transition: all 0.3s ease-in;
+}
+
+html.dark .clock {
+  background-color: var(--background-dark);
+  box-shadow: 0 10px 30px var(--shadow-dark);
 }
 
 .needle {
@@ -69,7 +104,7 @@ body {
   height: 65px;
   width: 3px;
   transform-origin: bottom center;
-  transition: all 0.5s ease-in linear;
+  transition: all 0.3s ease-in linear;
 }
 
 .needle.hour {
@@ -84,25 +119,26 @@ body {
 .needle.second {
   transform: translate(-50%, -100%) rotate(0deg);
   height: 100px;
-  background-color: #e74c3c;
+  background-color: var(--accent-color);
 }
 
 .center-point {
-  background-color: #e74c3c;
-  width: 10px;
-  height: 10px;
+  background-color: var(--accent-color);
+  width: 12px;
+  height: 12px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
 .center-point::after {
   content: '';
   background-color: var(--primary-color);
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -111,26 +147,31 @@ body {
 }
 
 .time {
-  font-size: 60px;
+  font-size: 50px;
+  margin-top: 20px;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 4px var(--shadow-light);
 }
 
 .date {
-  color: #aaa;
-  font-size: 14px;
-  letter-spacing: 0.3px;
+  color: var(--accent-color);
+  font-size: 16px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
+  margin-top: 10px;
 }
 
 .date .circle {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   border-radius: 50%;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  line-height: 18px;
-  transition: all 0.5s ease-in;
+  line-height: 20px;
+  transition: all 0.3s ease-in;
   font-size: 12px;
+  box-shadow: 0 4px 8px var(--shadow-light);
 }
